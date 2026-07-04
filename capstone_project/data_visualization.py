@@ -22,6 +22,7 @@ import warnings
 import numpy as np
 import pandas as pd
 import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.ticker as mticker
 import seaborn as sns
@@ -63,7 +64,7 @@ plt.rcParams.update({
 def save_fig(fig, name):
     path = f"reports/visualizations/{name}"
     fig.savefig(path, dpi=150, bbox_inches="tight", facecolor=BG_COLOR)
-    plt.show()
+    # plt.show()
     plt.close(fig)
     print(f"  Saved: {path}")
 

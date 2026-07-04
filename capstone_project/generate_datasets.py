@@ -24,7 +24,7 @@ def random_dates(start, end, n):
     delta = (end - start).days
     return [start + timedelta(days=random.randint(0, delta)) for _ in range(n)]
 
-N = 1500
+N = 10000
 
 # ─────────────────────────────────────────────
 # 1. CUSTOMERS DATASET  (1 500 rows × 20 columns)
