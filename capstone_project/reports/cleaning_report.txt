@@ -1,0 +1,38 @@
+DATA CLEANING REPORT
+Generated : 2026-07-04 15:20:56.033840
+============================================================
+
+CUSTOMERS
+  Raw rows         : 1530
+  Cleaned rows     : 1500
+  Columns          : 23
+  Nulls remaining  : 0
+  Imputed:
+    occupation: {'missing': 75, 'strategy': 'mode', 'fill_value': 'Designer'}
+    annual_income: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(102371.67)}
+    credit_score: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(597.0)}
+    years_employed: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(20.0)}
+  Outliers capped:
+    annual_income: {'outliers_capped': 20, 'lower_bound': np.float64(-172247.46), 'upper_bound': np.float64(390443.75)}
+    monthly_expenses: {'outliers_capped': 12, 'lower_bound': np.float64(-37413.79), 'upper_bound': np.float64(75750.33)}
+    credit_score: {'outliers_capped': 0, 'lower_bound': np.float64(-366.0), 'upper_bound': np.float64(1566.0)}
+    num_dependents: {'outliers_capped': 0, 'lower_bound': np.float64(-8.0), 'upper_bound': np.float64(13.0)}
+    years_employed: {'outliers_capped': 0, 'lower_bound': np.float64(-47.0), 'upper_bound': np.float64(86.0)}
+
+LOANS
+  Cleaned rows     : 1500
+  Columns          : 26
+  Nulls remaining  : 0
+  Imputed:
+    interest_rate: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(14.13)}
+    collateral_value: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(223473.25)}
+    num_late_payments: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(9.0)}
+    penalty_charges: {'missing': 75, 'strategy': 'median', 'fill_value': np.float64(25120.02)}
+  Outliers capped:
+    loan_amount: {'outliers_capped': 40, 'lower_bound': np.float64(-788872.93), 'upper_bound': np.float64(1408858.46)}
+    interest_rate: {'outliers_capped': 0, 'lower_bound': np.float64(-14.1), 'upper_bound': np.float64(42.32)}
+    emi_amount: {'outliers_capped': 60, 'lower_bound': np.float64(-26322.19), 'upper_bound': np.float64(42831.47)}
+    outstanding_balance: {'outliers_capped': 43, 'lower_bound': np.float64(-480479.23), 'upper_bound': np.float64(754642.86)}
+    collateral_value: {'outliers_capped': 42, 'lower_bound': np.float64(-961735.49), 'upper_bound': np.float64(1522081.79)}
+    penalty_charges: {'outliers_capped': 0, 'lower_bound': np.float64(-63564.25), 'upper_bound': np.float64(113381.4)}
+    num_late_payments: {'outliers_capped': 0, 'lower_bound': np.float64(-22.0), 'upper_bound': np.float64(41.0)}
