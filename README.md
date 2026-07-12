@@ -1,65 +1,284 @@
-# LoanVision — Capstone Data Dashboard & Pipeline
+# 🏎️ Formula One World Championship Data Analytics Dashboard
 
-A self-contained data engineering and analytics pipeline that generates, cleans, transforms, and visualizes synthetic loan portfolio datasets. The project features a headless python execution flow integrated with a clean, functional web-based monitoring dashboard.
+A complete end-to-end data analytics project developed as part of the **Google Cloud Data Analytics Virtual Internship**. The project demonstrates data cleaning, preprocessing, relational data integration, feature engineering, and interactive dashboard creation using historical Formula One World Championship data.
 
 ---
 
 ## Key Features
 
-- **Scalable Data Pipeline**: Generates 10,000 synthetic customers and loans, cleanses missing entries, merges the relationships into a single master analytical dataset, and generates 10 distinct portfolio and risk charts.
-- **Headless Plotting**: Matplotlib and Seaborn visualization outputs execute silently in the background using the non-interactive `Agg` backend to avoid disruptive graphical popups.
-- **Web Dashboard**: A single-page, tabbed dashboard application:
-  - **Overview & Stats**: High-level financial KPIs (Total Customers, Loans, Disbursed Volume, Interest Rates, Default Rates) and progress-bar breakdowns of credit risk and loan statuses.
-  - **Visualizations**: A category-filterable grid showing all 10 generated charts with overlay modal zoom windows.
-  - **Data Explorer**: An interactive table that previews the first 100 rows of the transformed master dataset, with custom client-side search text filtering and a CSV export downloader.
-  - **Pipeline Logs**: Real-time streaming console that displays the stdout/stderr lines of the running pipeline subprocess directly on the web page.
+- **End-to-End Data Analytics Pipeline**: Loads multiple relational Formula One datasets, performs cleaning, preprocessing, and merges them into a single analytics-ready dataset.
+- **Data Cleaning & Preprocessing**:
+  - Handles missing values (`\N` → `NaN`)
+  - Removes duplicate records
+  - Corrects data types
+  - Standardizes dataset for analysis
+- **Feature Engineering**:
+  - Driver Full Name
+  - Constructor Name
+  - Winner Indicator
+  - Podium Finish
+  - Race Completion Status
+  - Decade Classification
+  - Position Category
+  - Points Category
+- **Interactive Dashboard** (Google Looker Studio):
+  - Dashboard KPIs
+    - Total Drivers
+    - Total Constructors
+    - Total Race Results
+    - Total Seasons
+    - Average Points
+  - Interactive Filters
+    - Season
+    - Driver
+    - Constructor
+    - Country
+    - Race Status
+  - Visualizations
+    - Top Drivers by Championship Points
+    - Constructor Performance
+    - Championship Points Trend
+    - Race Finish Status Distribution
+    - Countries Hosting Formula One Races
+    - Grid Position vs Finish Position
+    - Interactive Race Results Table
 
 ---
 
-## Directory Structure
+## Project Structure
 
 ```text
-capstone_project/
-├── app.py                  # Flask backend server & REST API
-├── run_pipeline.py         # Subprocess runner orchestrating stages
-├── generate_datasets.py    # Synthetic customer/loan generator (N=10,000)
-├── data_cleaning.py        # Cleans nulls, outliers, and duplicates
-├── data_transformation.py  # Joins datasets into master_merged.csv
-├── data_visualization.py   # Renders headless matplotlib/seaborn charts
+.
 ├── data/
-│   ├── raw/                # Output destination for raw generation
-│   ├── cleaned/            # Sanitized customer/loan tables
-│   └── transformed/        # Contains joined 'master_merged.csv'
-├── reports/
-│   └── visualizations/     # Output destination for the 10 chart images
-└── static/
-    ├── index.html          # Dashboard single-page structural layout
-    ├── app.css             # Simplified, professional dark dashboard theme
-    └── app.js              # Client controller for API fetches and logging
+│   ├── circuits.csv
+│   ├── constructor_results.csv
+│   ├── constructor_standings.csv
+│   ├── constructors.csv
+│   ├── driver_standings.csv
+│   ├── drivers.csv
+│   ├── lap_times.csv
+│   ├── pit_stops.csv
+│   ├── qualifying.csv
+│   ├── races.csv
+│   ├── results.csv
+│   ├── seasons.csv
+│   ├── sprint_results.csv
+│   └── status.csv
+│
+├── Formula1_Data_Cleaning_Preprocessing.ipynb
+├── cleaned_f1_dataset.csv
+├── README.md
+└── Dashboard/
+    ├── dashboard.png
+    └── dashboard.pdf
 ```
 
 ---
 
-## Quick Start & Setup
+## Dataset
 
-### 1. Install Dependencies
-Ensure you have Python 3 installed. Install the necessary data science and web libraries:
+This project uses the **Formula One World Championship Dataset (1950–2020)** from Kaggle.
+
+The dataset contains historical information including:
+
+- Drivers
+- Constructors
+- Circuits
+- Race Results
+- Driver Standings
+- Constructor Standings
+- Qualifying Results
+- Sprint Results
+- Lap Times
+- Pit Stops
+- Seasons
+
+---
+
+## Data Analytics Workflow
+
+### 1. Data Exploration
+
+- Dataset inspection
+- Data types analysis
+- Missing value identification
+- Duplicate detection
+- Statistical summaries
+
+### 2. Data Cleaning
+
+- Handling missing values
+- Removing duplicates
+- Converting data types
+- Standardizing data
+
+### 3. Data Integration
+
+Multiple relational datasets were merged using:
+
+- Driver ID
+- Constructor ID
+- Race ID
+- Circuit ID
+- Status ID
+
+to create a unified analytical dataset.
+
+### 4. Feature Engineering
+
+Additional analytical columns were generated:
+
+- Driver
+- Constructor
+- Winner
+- Podium
+- Finished
+- Decade
+- Position Category
+- Points Category
+
+### 5. Dashboard Development
+
+The cleaned dataset was imported into **Google Looker Studio** to build an interactive analytics dashboard.
+
+---
+
+## Dashboard Overview
+
+The dashboard provides insights into Formula One performance through:
+
+### KPIs
+
+- Total Drivers
+- Total Constructors
+- Total Race Results
+- Total Seasons
+- Average Points
+
+### Visualizations
+
+- Top Drivers by Total Championship Points
+- Constructor Performance
+- Championship Points by Season
+- Race Finish Status Distribution
+- Number of Race Results by Country
+- Grid Position vs Finishing Position
+- Interactive Race Results Table
+
+### Interactive Filters
+
+- Season
+- Driver
+- Constructor
+- Country
+- Race Status
+
+---
+
+## Technologies Used
+
+- Python
+- Pandas
+- NumPy
+- Jupyter Notebook
+- Google Looker Studio
+- Google Sheets
+- Git
+- GitHub
+
+---
+
+## Installation
+
+Clone the repository
+
 ```bash
-pip install flask pandas matplotlib seaborn numpy
+git clone https://github.com/your-username/formula1-data-analytics.git
+
+cd formula1-data-analytics
 ```
 
-### 2. Start the Web Dashboard
-Navigate to the directory and start the Flask web server:
-```bash
-python3 capstone_project/app.py
-```
-*Note: The server runs locally on **`http://localhost:8000`**.*
+Install dependencies
 
-### 3. Open in Browser
-Open **`http://localhost:8000`** in your browser.
-- If you are running the dashboard for the first time, you will see a warning indicating that the datasets do not exist.
-- Click the **"Run Pipeline"** button in the sidebar or run the pipeline manually in your terminal:
-  ```bash
-  python3 capstone_project/run_pipeline.py
-  ```
-- The dashboard will display progress bars, statistics, charts, and table rows once the execution finishes successfully.
+```bash
+pip install pandas numpy matplotlib
+```
+
+Launch Jupyter Notebook
+
+```bash
+jupyter notebook
+```
+
+Open
+
+```text
+Formula1_Data_Cleaning_Preprocessing.ipynb
+```
+
+Run all cells to generate
+
+```text
+cleaned_f1_dataset.csv
+```
+
+Upload the generated CSV to **Google Sheets** (or BigQuery) and connect it to **Google Looker Studio** to build the dashboard.
+
+---
+
+## Learning Outcomes
+
+This project demonstrates practical experience in:
+
+- Data Cleaning
+- Data Preprocessing
+- Data Integration
+- Exploratory Data Analysis (EDA)
+- Feature Engineering
+- Dashboard Development
+- Data Visualization
+- Business Insight Generation
+
+---
+
+## Dashboard Preview
+
+> Add your Looker Studio dashboard screenshot here.
+
+Example:
+
+```text
+Dashboard/dashboard.png
+```
+
+---
+
+## Future Enhancements
+
+- Live Formula One API integration
+- BigQuery data warehouse support
+- Predictive analytics using Machine Learning
+- Driver performance forecasting
+- Interactive season comparisons
+- Automated ETL pipeline
+- Real-time dashboard updates
+
+---
+
+## Author
+
+**Chethan Sai**
+
+B.Tech Computer Science (Data Science)
+
+Anurag University
+
+GitHub: https://github.com/KChethansai
+
+LinkedIn: https://www.linkedin.com/in/kakunuri-chethan-sai-130a503b5/
+
+---
+
+## License
+
+This project is intended for educational and learning purposes.
